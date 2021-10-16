@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark bg-primary shadow justify-content-between">
+  <div class="container">
+    <h5 class="navbar-brand">List of Visitors</h5>
+    <button class="btn btn-dark" (click)="onBack()">Back</button>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body p-5">
+      <div
+        *ngIf="show"
+        class="alert alert-warning alert-dismissible fade show mb-4"
+        role="alert"
+      >
+        <strong>{{ this.result.message }}</strong>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          (click)="closeMessage()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th width="20" align="center">No.</th>
+            <th>Nama</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let visitor of visitors.data; let i = index">
+            <td align="center">{{ i + 1 }}</td>
+            <td>{{ visitor.name }}</td>
+            <td>{{ visitor.gender }}</td>
+            <td>{{ visitor.address }}</td>
+            <td>{{ visitor.phone }}</td>
+            <td align="right">
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteVisitor(visitor._id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

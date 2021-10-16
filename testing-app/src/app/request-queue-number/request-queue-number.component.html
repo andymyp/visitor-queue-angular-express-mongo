@@ -1,0 +1,82 @@
+<nav class="navbar navbar-dark bg-primary shadow justify-content-between">
+  <div class="container">
+    <h5 class="navbar-brand">Print Queue Number</h5>
+    <button class="btn btn-dark" (click)="onBack()">Back</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div
+    *ngIf="show"
+    class="alert alert-{{
+      this.result.code
+    }} alert-dismissible fade show mb-4 mt-4"
+    role="alert"
+  >
+    <strong>{{ this.result.message }}</strong>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="alert"
+      aria-label="Close"
+      (click)="closeMessage()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Number</th>
+                <th>Datetime</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let queue of queues.data">
+                <td>{{ queue.number }}</td>
+                <td>{{ queue.createdAt }}</td>
+                <td align="right">
+                  <button
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteQueue(queue._id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 text-center">
+      <h2 class="mb-3">NEXT QUEUE</h2>
+      <div
+        class="card text-center mr-auto ml-auto mb-4 col-md-10"
+        id="print-area"
+      >
+        <div class="card-body">
+          <h5 class="m-0">HOSPITAL</h5>
+          <hr class="m-2" />
+          <p class="m-0">Queue Number</p>
+          <h2 class="m-0">{{ this.numberQueue }}</h2>
+          <br />
+          <p class="m-0">Please wait</p>
+          <hr class="m-1" />
+          <p class="m-0">
+            Please queue for convenience together<br />
+            Thank you for your visit
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="takeQueue()">Take Queue</button>
+    </div>
+  </div>
+</div>
